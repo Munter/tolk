@@ -2,15 +2,6 @@
 
 var Path = require('path');
 var expect = require('unexpected').clone();
-expect.installPlugin(require('unexpected-promise'));
-
-expect.addAssertion('string', 'to begin with', function (expect, subject, cmp) {
-  expect(cmp, 'to be a string');
-
-  expect(subject.substr(0, cmp.length), 'to be', cmp);
-});
-
-
 var tolk = require('../lib/tolk');
 
 function getPath(path) {
@@ -19,7 +10,7 @@ function getPath(path) {
 
 describe('readCompiled', function () {
   it('should read a file directly if there is no adapter', function () {
-    return expect(tolk.read(getPath('unchanged.txt')), 'to be resolved with', {
+    return expect(tolk.read(getPath('unchanged.txt')), 'to be fulfilled with', {
       result: 'I am the same\n'
     });
   });
@@ -28,12 +19,12 @@ describe('readCompiled', function () {
     return expect(tolk.read(getPath('does-not-exist.txt')), 'when rejected', 'to satisfy', {
       code: 'ENOENT',
       path: /fixtures\/source\/does-not-exist\.txt$/,
-      message: /^ENOENT, open '.+?fixtures\/source\/does-not-exist\.txt'$/
+      message: /^ENOENT.*?, open '.+?fixtures\/source\/does-not-exist\.txt'$/
     });
   });
 
   it('should compile a file if there is an adapter', function () {
-    return expect(tolk.read(getPath('babel/simplest.jsx')), 'to be resolved with', {
+    return expect(tolk.read(getPath('babel/simplest.jsx')), 'to be fulfilled with', {
       result: expect.it('to begin with', '\'use strict\';\n\nvar foo = \'bar\';\n//# sourceMappingURL=data:application/json;base64,')
     });
   });
@@ -42,7 +33,7 @@ describe('readCompiled', function () {
     return expect(tolk.read(getPath('does-not-exist.scss')), 'when rejected', 'to satisfy', {
       code: 'ENOENT',
       path: /fixtures\/source\/does-not-exist\.scss$/,
-      message: /^ENOENT, open '.+?fixtures\/source\/does-not-exist\.scss'$/
+      message: /^ENOENT.*?, open '.+?fixtures\/source\/does-not-exist\.scss'$/
     });
   });
 
@@ -51,20 +42,19 @@ describe('readCompiled', function () {
       status: 1,
       file: /fixtures\/source\/scss\/syntaxerror\.scss$/,
       line: 2,
-      column: 3,
+      column: 8,
       message: 'property "color" must be followed by a \':\'',
-      code: 1
     });
   });
 
   it('should autoprefix uncompiled CSS output', function () {
-    return expect(tolk.read(getPath('basic.css')), 'to be resolved with', {
+    return expect(tolk.read(getPath('basic.css')), 'to be fulfilled with', {
       result: 'body {\n  -webkit-transform: rotate(-1deg);\n          transform: rotate(-1deg);\n}\n'
     });
   });
 
   it('should autoprefix compiled CSS output', function () {
-    return expect(tolk.read(getPath('scss/autoprefix.scss')), 'to be resolved with', {
+    return expect(tolk.read(getPath('scss/autoprefix.scss')), 'to be fulfilled with', {
       result: expect.it('to begin with', 'body {\n  -webkit-transform: rotate(-1deg);\n          transform: rotate(-1deg); }\n\n/*# sourceMappingURL=data:application/json;base64,')
     });
   });
