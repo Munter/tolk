@@ -1,5 +1,8 @@
 'use strict';
 
+// work around as requiring babel at runtime caused a timeout on travis.
+require('babel-core').transform('const foo="bar"', { presets: [ 'es2015' ] });
+
 var Path = require('path');
 var expect = require('unexpected').clone();
 var tolk = require('../lib/tolk');
