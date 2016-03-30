@@ -51,7 +51,7 @@
     "coveralls": "2.11.9",
     "css-parse": "2.0.0",
     "dogescript": "2.3.0",
-    "istanbul": "0.4.1",
+    "istanbul": "0.4.2",
     "jshint": "2.9.1",
     "less": "2.6.1",
     "marked": "0.3.5",
