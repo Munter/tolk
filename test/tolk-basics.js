@@ -45,8 +45,9 @@ describe('readCompiled', function () {
       status: 1,
       file: /fixtures\/source\/scss\/syntaxerror\.scss$/,
       line: 2,
-      column: 8,
+      column: 3,
       message: 'property "color" must be followed by a \':\'',
+      formatted: 'Error: property "color" must be followed by a \':\'\n        on line 2 of fixtures/source/scss/syntaxerror.scss\n>>   color hotpink\n   --^\n'
     });
   });
 
