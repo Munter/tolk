@@ -58,7 +58,7 @@
     "mocha": "2.4.5",
     "myth": "1.5.0",
     "node-sass": "3.5.3",
-    "stylus": "0.54.2",
+    "stylus": "0.54.5",
     "swig": "1.4.2",
     "unexpected": "10.13.2"
   }
