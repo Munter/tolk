@@ -11,6 +11,10 @@ function getPath(path) {
   return Path.join(process.cwd(), 'fixtures/source', path);
 }
 
+var autoprefixOptions = {
+  browsers: ['last 2 versions', 'Chrome 29']
+};
+
 describe('readCompiled', function () {
   it('should read a file directly if there is no adapter', function () {
     return expect(tolk.read(getPath('unchanged.txt')), 'to be fulfilled with', {
@@ -52,13 +56,13 @@ describe('readCompiled', function () {
   });
 
   it('should autoprefix uncompiled CSS output', function () {
-    return expect(tolk.read(getPath('basic.css')), 'to be fulfilled with', {
+    return expect(tolk.read(getPath('basic.css'), autoprefixOptions), 'to be fulfilled with', {
       result: 'body {\n  -webkit-transform: rotate(-1deg);\n          transform: rotate(-1deg);\n}\n'
     });
   });
 
   it('should autoprefix compiled CSS output', function () {
-    return expect(tolk.read(getPath('scss/autoprefix.scss')), 'to be fulfilled with', {
+    return expect(tolk.read(getPath('scss/autoprefix.scss'), autoprefixOptions), 'to be fulfilled with', {
       result: expect.it('to begin with', 'body {\n  -webkit-transform: rotate(-1deg);\n          transform: rotate(-1deg); }\n\n/*# sourceMappingURL=data:application/json;base64,')
     });
   });
