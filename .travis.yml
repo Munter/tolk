@@ -4,12 +4,10 @@ cache:
   directories:
   - node_modules
 node_js:
-  - "0.10"
-  - "0.12"
-  - "1"
-  - "2"
-  - "3"
-  - "4"
+  - '1'
+  - '2'
+  - '3'
+  - '4'
 script: "npm run-script travis"
 after_success: "<coverage/lcov.info ./node_modules/coveralls/bin/coveralls.js"
 
