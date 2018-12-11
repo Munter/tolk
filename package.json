@@ -9,6 +9,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "npm run lint && mocha",
+    "docs": "jsdoc -c .jsdoc.json lib",
     "coverage": "nyc --reporter=lcov --reporter=text -- mocha --reporter dot",
     "travis": "npm run lint && npm run coverage"
   },
@@ -52,6 +53,7 @@
     "eslint": "^5.10.0",
     "eslint-config-pretty-standard": "^2.0.0",
     "eslint-plugin-prettier": "^3.0.0",
+    "jsdoc": "^3.5.5",
     "less": "^3.9.0",
     "marked": "^0.5.2",
     "mocha": "^5.2.0",
