@@ -1,5 +1,4 @@
-Tolk
-====
+# Tolk
 
 [![NPM version](https://badge.fury.io/js/tolk.svg)](http://badge.fury.io/js/tolk)
 [![Build Status](https://travis-ci.org/Munter/tolk.svg?branch=master)](https://travis-ci.org/Munter/tolk)
@@ -16,9 +15,7 @@ Tolk is useful for tools that handle precompiling for you, but might also be use
 
 **Current precompiler support:** `LiveScript`, `babel`, `coco`, `coffee-script`, `dogescript`, `less`, `marked`, `myth`, `node-sass`, `stylus`, `swig`
 
-
-Usage
------
+## Usage
 
 ```
 npm install tolk
@@ -35,26 +32,15 @@ Now you are ready to start reading files from the file system. Tolk automaticall
 ```js
 var tolk = require('tolk');
 
-tolk.read('path/to/stylesheet.scss').done(function (compiled) {
-  // compiled.result is compiled, sourcemapped and autoprefixed CSS
-  console.log(compiled.result);
-}, function (err) {
-  // In case anything failed
-  throw err;
-});
+// CSS is compiled, sourcemapped and autoprefixed CSS
+const CSS = await tolk.read('path/to/stylesheet.scss');
 
-tolk.read('path/to/Reactcomponent.jsx').done(function (compiled) {
-  // compiled.result is compiled ES6 with source maps
-  console.log(compiled.result);
-}, function (err) {
-  // In case anything failed
-  throw err;
-});
+// JS is compiled ES6 with source maps
+const JS = await tolk.read('path/to/Reactcomponent.jsx');
 ```
 
+## License
 
-License
--------
 (The MIT License)
 
 Copyright (c) 2015 Peter Müller <munter@fumle.dk>
