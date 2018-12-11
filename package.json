@@ -7,9 +7,9 @@
     "lib"
   ],
   "scripts": {
-    "lint": "jshint .",
+    "lint": "eslint .",
     "test": "npm run lint && mocha",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- --reporter dot",
+    "coverage": "nyc --reporter=lcov --reporter=text -- mocha --reporter dot",
     "travis": "npm run lint && npm run coverage"
   },
   "repository": {
@@ -35,31 +35,32 @@
   },
   "homepage": "https://github.com/Munter/tolk",
   "dependencies": {
-    "accord": "0.24.1",
-    "autoprefixer": "^6.3.6",
-    "es6-promise": "^3.2.1",
+    "accord": "^0.29.0",
+    "autoprefixer": "^9.4.2",
     "inline-source-map-comment": "1.0.5",
-    "postcss": "^5.0.21",
-    "when": "^3.7.7"
+    "postcss": "^7.0.6"
   },
   "devDependencies": {
     "LiveScript": "^1.3.1",
-    "babel-core": "^6.9.1",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
     "coco": "0.9.1",
-    "coffee-script": "^1.10.0",
-    "coveralls": "^2.11.9",
+    "coffee-script": "^1.12.7",
+    "coveralls": "^3.0.2",
     "css-parse": "^2.0.0",
     "dogescript": "^2.3.0",
-    "istanbul": "^0.4.3",
-    "jshint": "^2.9.2",
-    "less": "2.7.1",
-    "marked": "^0.3.5",
-    "mocha": "^2.5.3",
+    "eslint": "^5.10.0",
+    "eslint-config-pretty-standard": "^2.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "less": "^3.9.0",
+    "marked": "^0.5.2",
+    "mocha": "^5.2.0",
     "myth": "^1.5.0",
-    "node-sass": "^3.7.0",
+    "node-sass": "^4.11.0",
+    "nyc": "^13.1.0",
+    "prettier": "^1.15.3",
     "stylus": "^0.54.5",
     "swig": "^1.4.2",
-    "unexpected": "^10.13.3"
+    "unexpected": "^10.39.2"
   }
 }
